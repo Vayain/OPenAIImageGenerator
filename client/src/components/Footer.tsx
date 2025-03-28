@@ -1,142 +1,93 @@
-import { Linkedin, Github, Twitter, Instagram } from 'lucide-react';
+import { Link } from 'wouter';
+import { Github, Image, Code, ExternalLink } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-muted/40 border-t py-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <a href="#" className="text-2xl font-bold mb-4 inline-block">John Doe</a>
-            <p className="text-gray-400 mb-6 max-w-md">
-              Creating the future with AI and technology innovation. Let's build something amazing together.
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="md:col-span-1">
+            <Link href="/" className="flex items-center gap-2 text-xl font-semibold mb-3 hover:text-primary">
+              <Image className="h-5 w-5" />
+              <span>AI Image Generator</span>
+            </Link>
+            <p className="text-muted-foreground mb-6 max-w-md text-sm">
+              A modern, powerful text-to-image generation application built with OpenAI's DALL-E 3 model. Create stunning visuals from simple text prompts.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Github className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
+            <h4 className="text-base font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <button 
-                  onClick={() => {
-                    const element = document.getElementById('portfolio');
-                    if (element) {
-                      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-                      window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
+                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+                  Generate Images
+                </Link>
+              </li>
+              <li>
+                <Link href="/portfolio" className="text-muted-foreground hover:text-primary transition-colors">
                   Portfolio
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    const element = document.getElementById('ai-showcase');
-                    if (element) {
-                      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-                      window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  AI Showcase
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    const element = document.getElementById('innovations');
-                    if (element) {
-                      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-                      window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Innovations
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    const element = document.getElementById('about');
-                    if (element) {
-                      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-                      window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  About
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    const element = document.getElementById('contact');
-                    if (element) {
-                      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-                      window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Contact
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-4">Resources</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">AI Research</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tech Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Case Studies</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Resume</a></li>
+            <h4 className="text-base font-semibold mb-4">Resources</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a 
+                  href="https://openai.com/blog/dall-e-3" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  <span>DALL-E 3 Documentation</span>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://platform.openai.com/docs/guides/images" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  <span>OpenAI Image API</span>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://platform.openai.com/docs/models/dall-e" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  <span>OpenAI Model Reference</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
         
-        <div className="mt-10 pt-6 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm mb-4 sm:mb-0">
-            &copy; {currentYear} John Doe. All rights reserved.
+        <div className="mt-8 pt-6 border-t flex flex-col sm:flex-row justify-between items-center">
+          <p className="text-muted-foreground text-sm mb-4 sm:mb-0">
+            &copy; {currentYear} AI Image Generator. Built with React, Node.js, and OpenAI.
           </p>
           <div className="flex space-x-6">
-            <a href="#" className="text-gray-500 hover:text-gray-400 text-sm">Privacy Policy</a>
-            <a href="#" className="text-gray-500 hover:text-gray-400 text-sm">Terms of Service</a>
+            <a href="#" className="text-muted-foreground hover:text-primary text-sm flex items-center gap-1">
+              <Code className="h-3 w-3" />
+              <span>Source Code</span>
+            </a>
           </div>
         </div>
       </div>

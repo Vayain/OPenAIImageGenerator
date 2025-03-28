@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'wouter';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Image, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Header() {
@@ -26,56 +26,32 @@ export default function Header() {
     };
   }, []);
 
-  const handleNavLinkClick = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
-    setIsMenuOpen(false);
-  };
-
   return (
-    <header className={`fixed w-full bg-background/90 backdrop-blur-sm z-50 border-b border-gray-100 transition-shadow ${isScrolled ? 'shadow-sm' : ''}`}>
+    <header className={`sticky top-0 w-full bg-background/90 backdrop-blur-sm z-50 border-b border-gray-100 transition-shadow ${isScrolled ? 'shadow-sm' : ''}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <Link href="/" className="text-primary font-bold text-xl">John Doe</Link>
+          <Link href="/" className="flex items-center space-x-2">
+            <Image className="h-6 w-6 text-primary" />
+            <span className="text-primary font-bold text-xl">AI Image Generator</span>
+          </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <button 
-              onClick={() => handleNavLinkClick('portfolio')} 
-              className="text-text hover:text-secondary transition-colors"
-            >
+          <nav className="hidden md:flex space-x-6">
+            <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+              Generate
+            </Link>
+            <Link href="/portfolio" className="text-muted-foreground hover:text-primary transition-colors">
               Portfolio
-            </button>
-            <button 
-              onClick={() => handleNavLinkClick('ai-showcase')} 
-              className="text-text hover:text-secondary transition-colors"
+            </Link>
+            <a 
+              href="https://github.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
             >
-              AI Showcase
-            </button>
-            <button 
-              onClick={() => handleNavLinkClick('innovations')} 
-              className="text-text hover:text-secondary transition-colors"
-            >
-              Innovations
-            </button>
-            <button 
-              onClick={() => handleNavLinkClick('about')} 
-              className="text-text hover:text-secondary transition-colors"
-            >
-              About
-            </button>
-            <button 
-              onClick={() => handleNavLinkClick('contact')} 
-              className="text-text hover:text-secondary transition-colors"
-            >
-              Contact
-            </button>
+              <Github className="h-4 w-4" />
+              <span>GitHub</span>
+            </a>
           </nav>
           
           {/* Mobile Menu Button */}
@@ -93,38 +69,23 @@ export default function Header() {
       
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 absolute w-full">
+        <div className="md:hidden bg-background border-t border-gray-100 absolute w-full">
           <div className="container mx-auto px-4 py-3 space-y-2">
-            <button 
-              onClick={() => handleNavLinkClick('portfolio')} 
-              className="block py-2 text-text hover:text-secondary transition-colors w-full text-left"
-            >
+            <Link href="/" className="block py-2 text-muted-foreground hover:text-primary transition-colors w-full text-left">
+              Generate
+            </Link>
+            <Link href="/portfolio" className="block py-2 text-muted-foreground hover:text-primary transition-colors w-full text-left">
               Portfolio
-            </button>
-            <button 
-              onClick={() => handleNavLinkClick('ai-showcase')} 
-              className="block py-2 text-text hover:text-secondary transition-colors w-full text-left"
+            </Link>
+            <a 
+              href="https://github.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block py-2 text-muted-foreground hover:text-primary transition-colors w-full text-left flex items-center gap-1"
             >
-              AI Showcase
-            </button>
-            <button 
-              onClick={() => handleNavLinkClick('innovations')} 
-              className="block py-2 text-text hover:text-secondary transition-colors w-full text-left"
-            >
-              Innovations
-            </button>
-            <button 
-              onClick={() => handleNavLinkClick('about')} 
-              className="block py-2 text-text hover:text-secondary transition-colors w-full text-left"
-            >
-              About
-            </button>
-            <button 
-              onClick={() => handleNavLinkClick('contact')} 
-              className="block py-2 text-text hover:text-secondary transition-colors w-full text-left"
-            >
-              Contact
-            </button>
+              <Github className="h-4 w-4" />
+              <span>GitHub</span>
+            </a>
           </div>
         </div>
       )}

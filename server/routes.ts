@@ -2,6 +2,8 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
+import { generateImage } from "./services/openai";
+import { insertImageGenerationSchema } from "@shared/schema";
 
 // Define a basic contact message schema
 const contactSchema = z.object({
@@ -34,6 +36,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(400).json({ 
         success: false, 
         message: 'Invalid form data provided. Please check your inputs and try again.'
+      });
+    }
+  });
+
+  // Generate image from text prompt
+  app.post('/api/generate-image', async (req: Request, res: Response) => {
+    try {
+      // Validate the request body
+      const data = insertImageGenerationSchema.parse(req.body);
+      
+      // Generate image using OpenAI
+      const imageUrl = await generateImage(data.prompt);
+      
+      // Save the generation to the database
+      const savedGeneration = await storage.createImageGeneration({
+        ...data,
+        imageUrl
+      });
+      
+      // Return the response
+      res.status(200).json({ 
+        success: true, 
+        message: 'Image generated successfully',
+        data: savedGeneration
+      });
+    } catch (error) {
+      console.error('Error generating image:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Failed to generate image. Please try again.'
+      });
+    }
+  });
+
+  // Get all image generations
+  app.get('/api/image-generations', async (_req: Request, res: Response) => {
+    try {
+      const generations = await storage.getAllImageGenerations();
+      res.status(200).json({
+        success: true,
+        data: generations
+      });
+    } catch (error) {
+      console.error('Error fetching image generations:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to fetch image generations'
+      });
+    }
+  });
+
+  // Get recent image generations with limit
+  app.get('/api/image-generations/recent/:limit', async (req: Request, res: Response) => {
+    try {
+      const limit = parseInt(req.params.limit) || 5;
+      const generations = await storage.getRecentImageGenerations(limit);
+      res.status(200).json({
+        success: true,
+        data: generations
+      });
+    } catch (error) {
+      console.error('Error fetching recent image generations:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to fetch recent image generations'
+      });
+    }
+  });
+
+  // Get specific image generation by ID
+  app.get('/api/image-generations/:id', async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id);
+      const generation = await storage.getImageGeneration(id);
+      
+      if (!generation) {
+        return res.status(404).json({
+          success: false,
+          message: 'Image generation not found'
+        });
+      }
+      
+      res.status(200).json({
+        success: true,
+        data: generation
+      });
+    } catch (error) {
+      console.error('Error fetching image generation:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to fetch image generation'
       });
     }
   });
