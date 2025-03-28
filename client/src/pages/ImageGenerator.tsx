@@ -128,70 +128,68 @@ export default function ImageGenerator() {
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
-      <div className="relative overflow-hidden bg-gradient-to-b from-primary/10 to-background py-20">
-        <div className="absolute inset-0 bg-grid-small-white/10 [mask-image:radial-gradient(white,transparent_85%)]"></div>
-        <div className="container relative z-10 max-w-6xl px-4 md:px-6">
-          <div className="flex flex-col items-center text-center">
-            <Badge variant="outline" className="mb-4 px-3 py-1 text-sm font-medium bg-primary/10 border-primary/20">
-              <Sparkles className="h-3.5 w-3.5 mr-1 text-primary" />
-              Powered by OpenAI
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
-              AI Image Generator
-            </h1>
-            <p className="text-xl max-w-2xl text-muted-foreground mb-8 leading-relaxed">
-              Transform your ideas into stunning visuals using OpenAI's cutting-edge DALL-E 3 model, enhanced by GPT-4o
-            </p>
-            <div className="flex gap-3 animate-in fade-in duration-700">
-              <Button size="lg" className="gap-2 rounded-full" onClick={() => document.getElementById('create-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-                <Zap className="h-4 w-4" />
-                Start Creating
-              </Button>
-              <Button size="lg" variant="outline" className="gap-2 rounded-full" onClick={() => document.getElementById('examples-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-                <ImageIcon className="h-4 w-4" />
-                See Examples
-              </Button>
-            </div>
+      <div className="border-b bg-background">
+        <div className="container px-4 md:px-6 py-20 flex flex-col items-center">
+          <Badge className="mb-4" variant="outline">
+            <Sparkles className="h-3 w-3 mr-1.5" />
+            Powered by OpenAI
+          </Badge>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center mb-4 max-w-3xl">
+            Generate images from text with AI
+          </h1>
+          <p className="text-lg text-muted-foreground text-center mb-8 max-w-[42rem]">
+            Transform your ideas into stunning visuals using OpenAI's DALL-E 3 model with GPT-4o prompt enhancement
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button 
+              size="lg" 
+              className="gap-2" 
+              onClick={() => document.getElementById('create-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+              <Zap className="h-4 w-4" />
+              Start Creating
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="gap-2" 
+              onClick={() => document.getElementById('examples-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+              <ImageIcon className="h-4 w-4" />
+              View Examples
+            </Button>
           </div>
         </div>
       </div>
       
       <main className="flex-1 py-16 bg-background">
         {/* Features section */}
-        <section className="container max-w-6xl px-4 md:px-6 mb-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border bg-background shadow-sm">
+        <section className="container px-4 md:px-6 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card>
               <CardHeader>
-                <div className="rounded-full w-12 h-12 flex items-center justify-center bg-primary/10 mb-4">
-                  <Brain className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Advanced Prompt Enhancement</CardTitle>
+                <Brain className="h-6 w-6 mb-2 text-primary" />
+                <CardTitle>Prompt Enhancement</CardTitle>
                 <CardDescription>
-                  GPT-4o analyzes and enhances your prompts to produce the best possible images
+                  GPT-4o analyzes and enhances your text prompts for better image generation results.
                 </CardDescription>
               </CardHeader>
             </Card>
             
-            <Card className="border bg-background shadow-sm">
+            <Card>
               <CardHeader>
-                <div className="rounded-full w-12 h-12 flex items-center justify-center bg-primary/10 mb-4">
-                  <ImageIcon className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>High Resolution Images</CardTitle>
+                <ImageIcon className="h-6 w-6 mb-2 text-primary" />
+                <CardTitle>High Resolution</CardTitle>
                 <CardDescription>
-                  Create beautiful 1024×1024 images with incredible detail and visual fidelity
+                  Create detailed 1024×1024 images with DALL-E 3's advanced image generation capabilities.
                 </CardDescription>
               </CardHeader>
             </Card>
             
-            <Card className="border bg-background shadow-sm">
+            <Card>
               <CardHeader>
-                <div className="rounded-full w-12 h-12 flex items-center justify-center bg-primary/10 mb-4">
-                  <Zap className="h-6 w-6 text-primary" />
-                </div>
+                <Zap className="h-6 w-6 mb-2 text-primary" />
                 <CardTitle>Fast Generation</CardTitle>
                 <CardDescription>
-                  Images are generated in seconds and saved to your generation history
+                  Images are generated quickly and automatically saved to your generation history.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -199,25 +197,24 @@ export default function ImageGenerator() {
         </section>
         
         {/* Create section */}
-        <section id="create-section" className="container max-w-6xl px-4 md:px-6 mb-24">
+        <section id="create-section" className="container px-4 md:px-6 mb-24">
           <div className="flex flex-col items-center mb-12 text-center">
-            <h2 className="text-3xl font-bold">Create Your Image</h2>
-            <p className="text-muted-foreground mt-3 max-w-2xl">
-              Describe what you want to see, and our AI will generate a custom image just for you
+            <h2 className="text-3xl font-bold mb-2">Create an Image</h2>
+            <p className="text-muted-foreground max-w-[42rem]">
+              Enter a detailed description and let AI generate a unique image for you.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Generation Form */}
-            <Card className="border shadow-sm bg-background relative overflow-hidden">
-              <div className="absolute inset-0 bg-grid-small-white/5 [mask-image:radial-gradient(white,transparent_95%)]"></div>
-              <CardHeader className="relative z-10">
+            <Card>
+              <CardHeader>
                 <CardTitle>Enter Your Prompt</CardTitle>
                 <CardDescription>
-                  Be descriptive for the best results. Try including details about style, colors, and composition.
+                  Be descriptive about style, lighting, and composition for better results.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="relative z-10">
+              <CardContent>
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <FormField
@@ -225,16 +222,16 @@ export default function ImageGenerator() {
                       name="prompt"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-base">Prompt</FormLabel>
+                          <FormLabel>Prompt</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="An astronaut riding a horse on Mars, cinematic lighting, detailed, 8k..."
-                              className="resize-none min-h-[180px] bg-background/60"
+                              className="resize-none min-h-[180px]"
                               {...field}
                             />
                           </FormControl>
                           <FormDescription>
-                            Your prompt will be enhanced by GPT-4o for better results
+                            Your prompt will be enhanced by GPT-4o for better results.
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
@@ -243,14 +240,13 @@ export default function ImageGenerator() {
                     
                     <Button 
                       type="submit" 
-                      className="w-full gap-2 font-medium"
-                      size="lg"
+                      className="w-full gap-2"
                       disabled={isPending}
                     >
                       {isPending ? (
                         <>
                           <Loader2 className="h-4 w-4 animate-spin" />
-                          Creating Your Image...
+                          Generating...
                         </>
                       ) : (
                         <>
@@ -265,18 +261,18 @@ export default function ImageGenerator() {
             </Card>
             
             {/* Generated Image Display */}
-            <Card className="border shadow-sm bg-background overflow-hidden">
+            <Card>
               <CardHeader>
                 <CardTitle>Generated Image</CardTitle>
                 <CardDescription>
                   {generatedImage 
-                    ? "Your image has been created! You can save or share it."
-                    : "Your generated image will appear here"}
+                    ? "Your image has been created. You can download or view it."
+                    : "Your generated image will appear here."}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-0 border-t">
+              <CardContent className="p-0 pt-2">
                 {generatedImage ? (
-                  <div className="relative aspect-square w-full overflow-hidden">
+                  <div className="relative aspect-square w-full overflow-hidden border rounded-md">
                     <img 
                       src={generatedImage} 
                       alt="Generated AI image" 
@@ -284,28 +280,24 @@ export default function ImageGenerator() {
                     />
                   </div>
                 ) : (
-                  <div className="flex flex-col justify-center items-center bg-muted/20 text-center h-[400px]">
+                  <div className="flex flex-col justify-center items-center bg-muted/10 text-center rounded-md border h-[320px]">
                     {isPending ? (
-                      <div className="space-y-4 animate-pulse">
-                        <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
-                          <Loader2 className="h-10 w-10 animate-spin text-primary" />
-                        </div>
-                        <div className="space-y-2">
-                          <p className="font-medium text-primary">Creating your masterpiece...</p>
-                          <p className="text-sm text-muted-foreground max-w-xs px-4">
-                            This typically takes 5-10 seconds as we enhance your prompt and generate the image
+                      <div className="space-y-3">
+                        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground mx-auto" />
+                        <div>
+                          <p className="font-medium text-sm">Generating image...</p>
+                          <p className="text-xs text-muted-foreground max-w-xs px-4 mt-1">
+                            This usually takes 5-10 seconds
                           </p>
                         </div>
                       </div>
                     ) : (
-                      <div className="space-y-4">
-                        <div className="h-20 w-20 rounded-full bg-muted/40 flex items-center justify-center">
-                          <ImageIcon className="h-10 w-10 text-muted-foreground/60" />
-                        </div>
+                      <div className="space-y-2">
+                        <ImageIcon className="h-8 w-8 text-muted-foreground/60 mx-auto" />
                         <div>
-                          <p className="font-medium">No image generated yet</p>
-                          <p className="text-sm text-muted-foreground max-w-xs px-4">
-                            Enter a descriptive prompt and click "Generate Image" to create your first image
+                          <p className="text-sm font-medium">No image generated</p>
+                          <p className="text-xs text-muted-foreground max-w-xs px-4 mt-1">
+                            Enter a prompt and click "Generate Image"
                           </p>
                         </div>
                       </div>
@@ -314,12 +306,14 @@ export default function ImageGenerator() {
                 )}
               </CardContent>
               {generatedImage && (
-                <CardFooter className="px-6 py-4 flex justify-between gap-4 bg-muted/10">
-                  <div className="text-sm text-muted-foreground line-clamp-1 flex items-center gap-1">
-                    <Sparkles className="h-3.5 w-3.5 text-primary shrink-0" />
-                    <span>DALL-E 3 + GPT-4o</span>
+                <CardFooter className="flex justify-between gap-4 mt-4">
+                  <div className="text-xs text-muted-foreground">
+                    <Badge variant="secondary" className="gap-1 text-xs h-5 px-2">
+                      <Sparkles className="h-3 w-3" />
+                      DALL-E 3
+                    </Badge>
                   </div>
-                  <div className="flex gap-2 shrink-0">
+                  <div className="flex gap-2">
                     <Button 
                       variant="outline"
                       size="sm"
@@ -332,7 +326,7 @@ export default function ImageGenerator() {
                       }}
                     >
                       <Download className="h-3.5 w-3.5" />
-                      <span>Save</span>
+                      <span>Download</span>
                     </Button>
                     <Button 
                       variant="outline"
@@ -341,7 +335,7 @@ export default function ImageGenerator() {
                       onClick={() => window.open(generatedImage, '_blank')}
                     >
                       <ExternalLink className="h-3.5 w-3.5" />
-                      <span>Open</span>
+                      <span>View</span>
                     </Button>
                   </div>
                 </CardFooter>
@@ -351,40 +345,40 @@ export default function ImageGenerator() {
         </section>
         
         {/* Recent Generations */}
-        <section id="examples-section" className="container max-w-6xl px-4 md:px-6">
-          <div className="flex flex-col items-center mb-12 text-center">
-            <h2 className="text-3xl font-bold">Recent Creations</h2>
-            <p className="text-muted-foreground mt-3 max-w-2xl">
-              Browse through the gallery of recently generated images
+        <section id="examples-section" className="container px-4 md:px-6 mb-20">
+          <div className="flex flex-col items-center mb-10 text-center">
+            <h2 className="text-3xl font-bold mb-2">Recent Creations</h2>
+            <p className="text-muted-foreground max-w-[42rem]">
+              Explore our gallery of recently generated AI images
             </p>
           </div>
           
           {isLoadingGenerations ? (
-            <div className="flex justify-center py-20">
-              <div className="flex flex-col items-center space-y-4">
-                <Loader2 className="h-10 w-10 animate-spin text-primary" />
-                <p className="text-muted-foreground">Loading recent generations...</p>
+            <div className="flex justify-center py-16">
+              <div className="flex flex-col items-center space-y-3">
+                <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">Loading gallery...</p>
               </div>
             </div>
           ) : recentGenerations?.data && recentGenerations.data.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {recentGenerations.data.map((item: ImageGeneration) => (
-                <Card key={item.id} className="overflow-hidden group border shadow-sm hover:shadow-md transition-all duration-200">
-                  <div className="aspect-square relative bg-muted/20 overflow-hidden">
+                <Card key={item.id} className="overflow-hidden group">
+                  <div className="aspect-square relative bg-muted/5 overflow-hidden">
                     <img 
                       src={item.imageUrl} 
-                      alt={`Generated from: ${item.prompt}`}
-                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                      alt={`AI generated image: ${item.prompt.substring(0, 30)}...`}
+                      className="object-cover w-full h-full"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-4">
                       <p className="text-white text-sm line-clamp-2">
                         {item.prompt}
                       </p>
                     </div>
                   </div>
-                  <CardFooter className="py-3 px-4 flex justify-between">
-                    <Badge variant="secondary" className="h-6">
-                      <Sparkles className="h-3 w-3 mr-1" />
+                  <CardFooter className="py-2 px-3 flex justify-between">
+                    <Badge variant="secondary" className="text-xs h-5 px-2">
+                      <span className="sr-only">Model:</span>
                       DALL-E 3
                     </Badge>
                     <time className="text-xs text-muted-foreground" dateTime={item.createdAt}>
@@ -395,16 +389,17 @@ export default function ImageGenerator() {
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-20 bg-muted/10 rounded-lg border border-dashed">
-              <div className="h-16 w-16 rounded-full bg-muted/20 flex items-center justify-center mb-4">
-                <ImageIcon className="h-8 w-8 text-muted-foreground/60" />
+            <div className="flex flex-col items-center justify-center py-16 border rounded-lg">
+              <div className="mb-4 text-muted-foreground">
+                <ImageIcon className="h-10 w-10" />
               </div>
               <h3 className="text-lg font-medium mb-1">No images yet</h3>
               <p className="text-muted-foreground text-center max-w-md mb-6">
-                Get started by generating your first image! Enter a prompt above and click "Generate Image".
+                Generate your first image to start building your collection.
               </p>
               <Button 
                 onClick={() => document.getElementById('create-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                variant="outline"
                 className="gap-2"
               >
                 <Sparkles className="h-4 w-4" />
